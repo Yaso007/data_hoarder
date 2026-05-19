@@ -1,1 +1,21 @@
 .env
+# binaries
+main
+*.exe
+
+# env files
+.env
+
+# logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# docker
+postgres_data/
