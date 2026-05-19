@@ -1,0 +1,45 @@
+services:
+
+  app:
+    build: .
+    container_name: go_backend
+
+    restart: always
+
+    ports:
+      - "5000:5000"
+
+    environment:
+      PORT: 5000
+
+      DB_HOST: postgres_db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: password
+      DB_NAME: data_hoarder
+
+      JWT_SECRET: supersecret
+
+    depends_on:
+      - postgres_db
+
+  postgres_db:
+    image: postgres:16
+
+    container_name: go_postgres
+
+    restart: always
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: data_hoarder
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
